@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aleš — Rojstnodnevna Pustolovščina</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #2d4a2d;
+    --moss: #4a7c59;
+    --sage: #8aab7e;
+    --cream: #f5f0e8;
+    --gold: #c8a84b;
+    --sky: #b8d4e8;
+    --stone: #7a7264;
+    --dark: #1a2518;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: var(--forest);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 2rem;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 80%, rgba(74,124,89,0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(45,74,45,0.6) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234a7c59' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .hero-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(7rem, 20vw, 14rem);
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(200,168,75,0.3);
+    line-height: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    user-select: none;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(200,168,75,0.4);
+    padding: 0.4rem 1.2rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    animation: fadeUp 1s ease both;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.1;
+    animation: fadeUp 1s ease 0.2s both;
+  }
+
+  .hero-name em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: rgba(245,240,232,0.6);
+    margin-top: 1.5rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 500px;
+    animation: fadeUp 1s ease 0.4s both;
+  }
+
+  .hero-scroll {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(245,240,232,0.4);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: fadeUp 1s ease 0.8s both;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 6rem 1.5rem;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  /* ─── INTRO ─── */
+  .intro {
+    background: var(--cream);
+    text-align: center;
+  }
+
+  .intro-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 1.5rem;
+  }
+
+  .intro-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    line-height: 1.25;
+    color: var(--forest);
+    margin-bottom: 2rem;
+  }
+
+  .intro-text {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--stone);
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .intro-text strong {
+    color: var(--forest);
+    font-weight: 500;
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 3rem auto;
+    max-width: 300px;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--sage); opacity: 0.4; }
+  .divider-icon { color: var(--gold); font-size: 1.2rem; }
+
+  /* ─── STATS BAR ─── */
+  .stats {
+    background: var(--forest);
+    padding: 3rem 1.5rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .stat-item {
+    color: var(--cream);
+  }
+
+  .stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-unit {
+    font-size: 0.9rem;
+    color: var(--sage);
+    margin-top: 0.3rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+    margin-top: 0.5rem;
+  }
+
+  /* ─── STORY STEPS ─── */
+  .story {
+    background: var(--cream);
+  }
+
+  .story-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .story-header .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--moss);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .story-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--forest);
+    font-style: italic;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    align-items: start;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .step.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .step-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .step-num {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 2px solid var(--sage);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--forest);
+    background: var(--cream);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-line {
+    width: 1px;
+    flex: 1;
+    min-height: 60px;
+    background: linear-gradient(to bottom, var(--sage), transparent);
+    margin-top: 0;
+    opacity: 0.4;
+  }
+
+  .step-content {
+    padding-top: 0.5rem;
+  }
+
+  .step-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--forest);
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .step-text {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: var(--stone);
+  }
+
+  .step-text strong {
+    color: var(--forest);
+    font-weight: 500;
+  }
+
+  .step-img {
+    margin-top: 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    background: var(--forest);
+  }
+
+  .step-img img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .step-img:hover img {
+    transform: scale(1.03);
+  }
+
+  .step-img-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(26,37,24,0.8));
+    color: rgba(245,240,232,0.8);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 1rem 1rem 0.7rem;
+  }
+
+  /* ─── REWARD ─── */
+  .reward {
+    background: var(--forest);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .reward::before {
+    content: '🏆';
+    position: absolute;
+    font-size: 20rem;
+    opacity: 0.03;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .reward-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .reward-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 2rem;
+  }
+
+  .reward-title em {
+    color: var(--gold);
+  }
+
+  .reward-text {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: rgba(245,240,232,0.65);
+    max-width: 560px;
+    margin: 0 auto 3rem;
+  }
+
+  .reward-items {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .reward-item {
+    background: rgba(245,240,232,0.07);
+    border: 1px solid rgba(200,168,75,0.3);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+
+  .reward-item-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .reward-item-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+
+  .reward-item-sub {
+    font-size: 0.78rem;
+    color: var(--sage);
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--dark);
+    text-align: center;
+    padding: 4rem 1.5rem;
+  }
+
+  .footer-wish {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: var(--cream);
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .footer-wish em {
+    color: var(--gold);
+  }
+
+  .footer-signed {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.3);
+  }
+
+  .mountains-svg {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    display: block;
+    opacity: 0.15;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.1); }
+  }
+
+  /* ─── ELEVATION PROFILE ─── */
+  .elevation {
+    background: #eee9e0;
+    padding: 4rem 1.5rem;
+  }
+
+  .elevation-label {
+    text-align: center;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 1rem;
+  }
+
+  .elevation-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--forest);
+    margin-bottom: 2.5rem;
+  }
+
+  .elev-chart {
+    position: relative;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .elev-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ─── QUOTE BLOCK ─── */
+  .quote-block {
+    background: var(--forest);
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+
+  .quote-marks {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: var(--gold);
+    line-height: 0.5;
+    opacity: 0.5;
+    margin-bottom: 1rem;
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 3.5vw, 2rem);
+    color: var(--cream);
+    font-style: italic;
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .quote-attr {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--sage);
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 500px) {
+    .step { grid-template-columns: 44px 1fr; gap: 1rem; }
+    .step-num { width: 40px; height: 40px; font-size: 1rem; }
+    .reward-item { padding: 1.5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ HERO ══════════════ -->
+<div class="hero">
+  <div class="hero-number">50</div>
+  <div class="hero-content">
+    <div class="hero-tag">✦ Rojstnodnevno darilo ✦</div>
+    <h1 class="hero-name">Aleš,<br><em>čaka te gora.</em></h1>
+    <p class="hero-sub">
+      Za tvojega 50. rojstnega dne ti podarjamo pustolovščino —<br>
+      vzpon na Dom na Kofcah.
+    </p>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Pomakni se navzdol</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ INTRO ══════════════ -->
+<section class="intro">
+  <div class="container">
+    <p class="intro-label">✦ Misija 50 ✦</p>
+    <h2 class="intro-title">
+      Kdor trdo dela v telovadnici,<br>mora preizkusiti noge še na gori.
+    </h2>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-icon">🌿</div>
+      <div class="divider-line"></div>
+    </div>
+    <p class="intro-text">
+      Aleš — letošnjih <strong>50 let</strong> je priložnost, ki jo je treba proslaviti z nečim, česar si ne moreš kar tako kupiti v trgovini.
+      Zberi prijatelje, ki jih imaš rad, obleci pohodniške čevlje in pojdi z nami na <strong>Dom na Kofcah</strong>.
+      Pot ni posebej zahtevna — a nagrada na vrhu je vredna vsake kapljice znoja. Spodaj ti razkrivamo, kako bo ta dan izgledal.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════ STATS ══════════════ -->
+<div class="stats">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-value">915</div>
+      <div class="stat-unit">m n.v.</div>
+      <div class="stat-label">Izhodišče</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">1488</div>
+      <div class="stat-unit">m n.v.</div>
+      <div class="stat-label">Dom na Kofcah</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">573</div>
+      <div class="stat-unit">m</div>
+      <div class="stat-label">Višinska razlika</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">~2</div>
+      <div class="stat-unit">uri</div>
+      <div class="stat-label">Čas hoje</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ QUOTE ══════════════ -->
+<div class="quote-block">
+  <div class="quote-marks">"</div>
+  <p class="quote-text">
+    Gore ne rastejo — rastemo mi, ki jih hodimo.
+  </p>
+  <p class="quote-attr">— za Aleša, ob 50. rojstnem dnevu</p>
+</div>
+
+<!-- ══════════════ ELEVATION PROFILE ══════════════ -->
+<div class="elevation">
+  <p class="elevation-label">✦ Profil vzpona ✦</p>
+  <h3 class="elevation-title">Matizovec → Dom na Kofcah</h3>
+  <div class="elev-chart">
+    <svg class="elev-svg" viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="elevGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#4a7c59" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#4a7c59" stop-opacity="0.05"/>
+        </linearGradient>
+      </defs>
+      <!-- Terrain fill -->
+      <path d="M 20 170 C 60 168, 100 165, 140 155 C 180 145, 220 140, 260 125 C 300 110, 340 100, 380 85 C 420 70, 460 60, 510 45 C 540 36, 580 32, 650 28 L 650 185 L 20 185 Z"
+        fill="url(#elevGrad)" stroke="#4a7c59" stroke-width="2.5" stroke-linejoin="round"/>
+      <!-- Grid lines -->
+      <line x1="20" y1="28" x2="20" y2="185" stroke="#4a7c59" stroke-opacity="0.2" stroke-width="1"/>
+      <line x1="650" y1="28" x2="650" y2="185" stroke="#4a7c59" stroke-opacity="0.2" stroke-width="1"/>
+      <line x1="20" y1="185" x2="650" y2="185" stroke="#4a7c59" stroke-opacity="0.2" stroke-width="1"/>
+      <!-- Labels -->
+      <text x="20" y="198" font-size="11" fill="#7a7264" font-family="DM Sans, sans-serif" text-anchor="middle">Parkirišče</text>
+      <text x="140" y="148" font-size="11" fill="#7a7264" font-family="DM Sans, sans-serif" text-anchor="middle">Matizovec</text>
+      <text x="650" y="21" font-size="11" fill="#2d4a2d" font-family="DM Sans, sans-serif" font-weight="600" text-anchor="middle">Kofce</text>
+      <text x="650" y="198" font-size="11" fill="#7a7264" font-family="DM Sans, sans-serif" text-anchor="middle">1488 m</text>
+      <!-- Start dot -->
+      <circle cx="20" cy="170" r="4" fill="#c8a84b"/>
+      <!-- End dot -->
+      <circle cx="650" cy="28" r="6" fill="#c8a84b"/>
+      <circle cx="650" cy="28" r="12" fill="#c8a84b" fill-opacity="0.2"/>
+      <!-- Matizovec dot -->
+      <circle cx="140" cy="155" r="3" fill="#4a7c59"/>
+      <!-- 915 label -->
+      <text x="20" y="165" dy="-6" font-size="10" fill="#c8a84b" font-family="DM Sans, sans-serif" text-anchor="middle">915 m</text>
+    </svg>
+  </div>
+</div>
+
+<!-- ══════════════ STORY STEPS ══════════════ -->
+<section class="story">
+  <div class="container">
+    <div class="story-header">
+      <span class="section-label">✦ Zgodba dneva ✦</span>
+      <h2>Kako bo izgledal<br>tvoj dan</h2>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="step" data-step>
+      <div class="step-left">
+        <div class="step-num">1</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-content">
+        <span class="step-tag">🚗 Pot do izhodišča</span>
+        <h3 class="step-title">Parkirišče pod Matizovcem</h3>
+        <p class="step-text">
+          Z avtoceste Ljubljana–Jesenice zavijemo na izvoz <strong>Ljubelj</strong> in sledimo cesti proti mejnemu prehodu. Kjer nas označbe za <em>»kamp in Podljubelj«</em> usmerijo desno, zavijemo. Pri naslednjem križišču gremo levo v smeri <strong>»Kofce«</strong>, nato skozi vas in desno v smeri <strong>»Matizovec in Kofce«</strong>.
+          <br><br>
+          Pot nas pripelje do <strong>velikega parkirišča</strong> (plačljivo, 4 EUR za cel dan) — kakih 150 višinskih metrov pod kmetijo Matizovec. Tu se začne pustolovščina.
+        </p>
+        <div class="step-img">
+          <img src="https://www.hribi.net/slike1/Kosuta%200661661352.th.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80'; this.onerror=null;"
+               alt="Parkirišče Matizovec">
+          <div class="step-img-caption">Parkiranje · 915 m n.v.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step" data-step>
+      <div class="step-left">
+        <div class="step-num">2</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-content">
+        <span class="step-tag">🌲 Prvih 20 minut</span>
+        <h3 class="step-title">Po makadamu do kmetije Matizovec</h3>
+        <p class="step-text">
+          Iz parkirišča nadaljujemo po <strong>makadamski cesti</strong>. Hoja je sproščena, gozd nas objema z obeh strani — idealen čas, da se ogrejemo in si med seboj povemo kakšno staro zgodbo.
+          <br><br>
+          Po dobri četrt ure hoje prispemo do <strong>kmetije Matizovec</strong> (1072 m), kjer pot postane resnejša.
+        </p>
+        <div class="step-img">
+          <img src="https://www.hribi.net/slike1/Kosuta%202191018248.th.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80'; this.onerror=null;"
+               alt="Pot skozi gozd">
+          <div class="step-img-caption">Makadam skozi gozd · ~1000 m n.v.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step" data-step>
+      <div class="step-left">
+        <div class="step-num">3</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-content">
+        <span class="step-tag">⛰️ Srce vzpona</span>
+        <h3 class="step-title">Strma planinska pot navzgor</h3>
+        <p class="step-text">
+          Od Matizovca nadaljujemo po slabši cesti in <strong>pazljivo sledimo markacijam</strong>. Po kratki hoji po kolovozu nas označbe usmerijo na <strong>strmejšo pešpot</strong>, ki se prečno vzpne levo, nato pa preide na gozdnat greben in zavije desno.
+          <br><br>
+          Višje se gozd razredči — pot postopoma postane <strong>razgledna</strong>. Dih ti jemlje ne samo strmina, ampak tudi pogled. Karavanke se razprostirajo za tabo, pred tabo pa te čaka cilj.
+        </p>
+        <div class="step-img">
+          <img src="https://www.hribi.net/slike1/Kosuta%202141018248.th.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&q=80'; this.onerror=null;"
+               alt="Vzpon skozi gozd">
+          <div class="step-img-caption">Strma pot · gozd in razgledišča</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step" data-step>
+      <div class="step-left">
+        <div class="step-num">4</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-content">
+        <span class="step-tag">🌄 Zadnjih 5 minut</span>
+        <h3 class="step-title">Planina se odpre — vrh je tvoj</h3>
+        <p class="step-text">
+          Z desne se priključi markirana pot s Kala. Gozd se konča. Pred teboj se razpre <strong>sončna planina</strong> — in po petih minutah hoje prideš do <strong>Doma na Kofcah</strong>.
+          <br><br>
+          To je trenutek, ko se obrneš, pogledaš navzdol v dolino in si rečeš: <em>»Ja, sem sem hodil vseh teh let.«</em>
+        </p>
+        <div class="step-img">
+          <img src="https://www.hribi.net/slike1/Kosuta%202011339800.th.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&q=80'; this.onerror=null;"
+               alt="Dom na Kofcah">
+          <div class="step-img-caption">Dom na Kofcah · 1488 m n.v.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ REWARD ══════════════ -->
+<section class="reward">
+  <div class="container">
+    <p class="reward-label">✦ Nagrada te čaka ✦</p>
+    <h2 class="reward-title">
+      Na vrhu:<br><em>pijača &amp; struklji.</em>
+    </h2>
+    <p class="reward-text">
+      Dom na Kofcah je znan po svojih <strong style="color:var(--gold)">štrukljih</strong> — mehkih, domačih, takšnih, da jih je vredno vzpeti se po 573 višinskih metrov.
+      Seveda bo tu še zaslužena pijača in najboljša večerja — ta z razgledom, ki ga ni mogoče kupiti.
+    </p>
+    <div class="reward-items">
+      <div class="reward-item">
+        <span class="reward-item-icon">🍺</span>
+        <div class="reward-item-name">Zaslužena pijača</div>
+        <div class="reward-item-sub">Na vrhu je okus drugačen</div>
+      </div>
+      <div class="reward-item">
+        <span class="reward-item-icon">🥟</span>
+        <div class="reward-item-name">Najboljši štruklji</div>
+        <div class="reward-item-sub">Legendarni Dom na Kofcah</div>
+      </div>
+      <div class="reward-item">
+        <span class="reward-item-icon">🏔️</span>
+        <div class="reward-item-name">Razgled Karavank</div>
+        <div class="reward-item-sub">Neprecenljivo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ GALLERY STRIP ══════════════ -->
+<div style="background: var(--dark); padding: 3rem 0; overflow:hidden;">
+  <div style="display:flex; gap:1rem; padding: 0 1rem; justify-content:center; flex-wrap:wrap;">
+    <img src="https://www.hribi.net/slike1/Kosuta%202001339800.th.jpg"
+         onerror="this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&q=70'; this.onerror=null;"
+         style="height:160px; width:240px; object-fit:cover; border-radius:8px; opacity:0.85;" alt="">
+    <img src="https://www.hribi.net/slike1/Kosuta%201981339800.th.jpg"
+         onerror="this.src='https://images.unsplash.com/photo-1501854140801-50d01698950b?w=300&q=70'; this.onerror=null;"
+         style="height:160px; width:180px; object-fit:cover; border-radius:8px; opacity:0.85;" alt="">
+    <img src="https://www.hribi.net/slike1/Kosuta%201961339800.th.jpg"
+         onerror="this.src='https://images.unsplash.com/photo-1519681393784-d120267933ba?w=300&q=70'; this.onerror=null;"
+         style="height:160px; width:220px; object-fit:cover; border-radius:8px; opacity:0.85;" alt="">
+    <img src="https://www.hribi.net/slike1/Kosuta%201941339800.th.jpg"
+         onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=300&q=70'; this.onerror=null;"
+         style="height:160px; width:190px; object-fit:cover; border-radius:8px; opacity:0.85;" alt="">
+  </div>
+  <p style="text-align:center; margin-top:1.2rem; font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(245,240,232,0.25);">
+    Pot · Kosuta · Dom na Kofcah
+  </p>
+</div>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+  <svg class="mountains-svg" viewBox="0 0 700 120" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,120 80,40 160,90 280,10 400,70 520,30 620,80 700,50 700,120" fill="white"/>
+  </svg>
+  <p class="footer-wish">
+    Srečno pot, <em>Aleš.</em><br>
+    Gora te bo počakala.
+  </p>
+  <p style="color: var(--gold); font-size: 1.5rem; margin: 1.5rem 0;">🎂</p>
+  <p class="footer-signed">Z ljubeznijo — za tvoj 50. rojstni dan</p>
+</footer>
+
+<script>
+  // Scroll reveal for steps
+  const steps = document.querySelectorAll('[data-step]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  steps.forEach(step => observer.observe(step));
+</script>
+
+</body>
+</html>
